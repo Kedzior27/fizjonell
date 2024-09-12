@@ -31,6 +31,18 @@ var medfile20_Register = function medfile20_Register() {
         actions[action](event);
     }, false);
     var actions = {
+        scrollTop: function scrollTop(event) {
+            var id = event.data.target;
+            var bodyRect = document.body.getBoundingClientRect();
+            var elemRect, offset, element;
+            element = id ? document.getElementById(id) : iframe;
+            elemRect = element.getBoundingClientRect();
+            offset = elemRect.top - bodyRect.top;
+            window.scrollTo(0, offset);
+        },
+        scrollToIframe: function scrollToIframe(event) {
+            window.scrollTo(0, iframe.offsetTop);
+        },
         getCoords: function getCoords(event) {
             const rect = iframe.getBoundingClientRect();
             const iframeOffsetTop = rect.top + window.scrollY - 50;
